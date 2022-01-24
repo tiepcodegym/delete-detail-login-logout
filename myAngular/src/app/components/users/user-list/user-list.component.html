@@ -1,0 +1,34 @@
+<div class="card">
+  <div class="card-header" [style.background-color]="backgroundColor" >
+    {{pageTitle}}
+  </div>
+  <div class="card-body">
+    <input type="color" (input)="changeColor($event)">
+    <input type="range" value="{{sizeImage}}" (input)="changeSizeImage($event)" max="200" min="10">
+    Size image: {{sizeImage}} px
+    <input type="text" (keyup)="search($event)">
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Image</th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let user of userFilter; let i = index">
+        <th scope="row">{{i + 1}}</th>
+        <td>{{user.name}}</td>
+        <td>{{user.email}}</td>
+        <td><img [width]="sizeImage" src="{{user.image}}"></td>
+        <td><button class="btn btn-danger" (click)="deleteUser(i)">Delete</button></td>
+        <td><button class="btn btn-success" routerLink="{{user.id}}/detail">Detail</button></td>
+      </tr>
+
+      </tbody>
+    </table>
+  </div>
+</div>
